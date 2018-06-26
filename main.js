@@ -1,6 +1,7 @@
 var img;
 var capture; 
 var W = 1080, H = 720;
+var i = 0, j = 0;
 
 function setup(){
 
@@ -9,20 +10,32 @@ function setup(){
     //colorMode(HSB, 100);
 
     // uncomment to enable webcam feed
-    //capture = createCapture(VIDEO);
-    //capture.size(W, H);
-    //capture.hide();
+    capture = createCapture(VIDEO);
+    capture.size(W, H);
+    capture.hide();
 
-    img = loadImage('assets/test.jpg');  
+    //img = loadImage('assets/test.jpg');  
 }
 
 function draw(){
 
-    background(255);
+    //background(255);
 
-    //image(capture, 0, 0, W, H); 
+    image(capture, i*(W/10), j*(H/10), W/10, H/10); 
 
-    image(img, 0, 0, W, H);
+    if(keyIsDown(RIGHT_ARROW)){
+    	i++;
+    }
+
+    if(i == 10){
+        i = 0;
+        j++;
+    }
+    if(j == 10){
+        j = 0;
+    }
+    
+    //image(img, 0, 0, W, H);
 
     fill(0, 102, 153);
     textSize(32);
